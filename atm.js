@@ -1,100 +1,58 @@
-import fs from "fs";
-// import { Batch } from "mongodb/lib/bulk/common";
-// import { userInfo } from "os";
-import readline from "readline";
+import fs from "node:fs/promises";
+import inquirer from "inquirer";
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
+const { username, password } = await inquirer.prompt([
+  {
+    type: "input",
+    name: "username",
+    message: "Neree oruulna uu",
+  },
+  {
+    type: "password",
+    name: "password",
+    message: "password oruulna uu",
+  },
+  // {
+  //   type: "select",
+  //   name: "action",
+  //   choices: ["Deposit", "Withdraw"],
+  //   message: "Ymar uildel hiih we"
+  // }
+]);
+
+const userRawData = await fs.readFile("users.json", "utf8");
+
+const users = JSON.parse(userRawData);
+
+const user = users.find((value) => {
+  return value.name == username && value.password == password;
+  console.log("123");
 });
 
-// readUsers(): users.txt-ээс унших
-function readUsers() {
-  if (!fs.existsSync("users.txt")) return [];
+if (!user) {
+  console.log("ner eswel nuuts ug buruu bn!");
 
-  const data = fs.readFileSync("users.txt", "utf-8").trim();
+  process.exit();
+}
 
-  return data.split("\n").map((line) => {
-    const [username, pin, balance] = line.split(",");
-    return { username, pin, balance: parseInt(balance) };
+const historyRawData = await fs.readFile("history.json", "utf8");
+
+const history = JSON.parse(historyRawData);
+
+if (!history[user.name]) {
+  history[user.name] = [];
+}
+
+history[user.name].push({ amount: 1000, action: "deposit" });
+
+const historyString = JSON.stringify(history);
+
+fs.writeFile("history.json", historyString)
+  .then(() => {
+    console.log("Amjilttai bayrtai!");
+    process.exit();
+  })
+  .catch((e) => {
+    console.log(e);
+    console.log("aldaa garlaa");
   });
-  // 👉 Хэрэглэгчийн мэдээллийг унших код
-}
-
-// writeUsers(): users.txt-д бичих
-function writeUsers(users) {
-  const line = users.map((u) => ` ${u.username}, ${u.pin}, ${u.balance}`);
-  fs.writeFileSync("users.txt", line.join(" \n "));
-}
-
-// logTransaction(): transactions.txt-д бичих
-function logTransaction(username, type, amount) {
-  // 👉 Гүйлгээний лог бичих код
-}
-
-// =======================
-// Register (шинэ хэрэглэгч)
-// =======================
-function register() {
-  const user = readUsers();
-
-  rl.question("Нэвтрэх нэрээ оруулна уу ", (username) => {
-    rl.question("password ", (pin) => {
-      rl.question("balance ", (balance) => {
-        const newUser = { username, pin, balance };
-        user.push(newUser);
-        writeUsers(user);
-      });
-    });
-  });
-  // 👉 Шинэ хэрэглэгчийн нэр асуух
-  // 👉 PIN код асуух
-  // 👉 Эхний үлдэгдэл асуух
-  // 👉 users.txt-д хадгалах
-}
-
-// =======================
-// Login + Menu
-// =======================
-function login() {
-  console.log(
-    ` ==== ATM MENU ====  
-    1. Үлдэгдэл шалгах 
-    2. Мөнгө нэмэх  
-    3. Мөнгө авах 
-    4. Гарах `
-  );
-
-  // 👉 Нэвтрэх нэр асуух
-  // 👉 PIN код асуух
-  // 👉 Хэрэглэгчийн мэдээллийг шалгах
-  // 👉 showMenu дуудаж ажиллуулах
-}
-
-function showMenu(user) {
-  // 👉 Menu-г харуулах
-  // 1. Үлдэгдэл шалгах
-  // 2. Мөнгө нэмэх
-  // 3. Мөнгө авах
-  // 4. Гарах
-  // 👉 Хэрэглэгчийн сонголтоор switch case ашиглах
-}
-
-// =======================
-// Main
-// =======================
-console.log(`
-    ==== ATM SYSTEM ====  
-    1. Нэвтрэх 
-    2. Бүртгүүлэх `);
-
-rl.question("Сонголтоо оруулна уу: ", (startChoice) => {
-  if (startChoice === "1") {
-    login();
-  } else if (startChoice === "2") {
-    register();
-  } else {
-    console.log("⚠️ Буруу сонголт!");
-    rl.close();
-  }
-});

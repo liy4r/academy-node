@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/liy4r/academy-node/issues"
   },
-  "homepage": "https://github.com/liy4r/academy-node#readme"
+  "homepage": "https://github.com/liy4r/academy-node#readme",
+  "dependencies": {
+    "inquirer": "^12.10.0"
+  }
 }

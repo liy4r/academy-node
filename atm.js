@@ -38,9 +38,9 @@ function logTransaction(username, type, amount) {
 function register() {
   const user = readUsers();
 
-  rl.question("Нэвтрэх нэрээ оруулна уу", (username) => {
+  rl.question("Нэвтрэх нэрээ оруулна уу ", (username) => {
     rl.question("password ", (pin) => {
-      rl.question("balance", (balance) => {
+      rl.question("balance ", (balance) => {
         const newUser = { username, pin, balance };
         user.push(newUser);
         writeUsers(user);
@@ -58,7 +58,11 @@ function register() {
 // =======================
 function login() {
   console.log(
-    " ==== ATM MENU ====   1. Үлдэгдэл шалгах 2. Мөнгө нэмэх  3. Мөнгө авах 4. Гарах ",
+    ` ==== ATM MENU ====  
+    1. Үлдэгдэл шалгах 
+    2. Мөнгө нэмэх  
+    3. Мөнгө авах 
+    4. Гарах `
   );
 
   // 👉 Нэвтрэх нэр асуух
@@ -79,7 +83,10 @@ function showMenu(user) {
 // =======================
 // Main
 // =======================
-console.log("==== ATM SYSTEM ====  1. Нэвтрэх 2. Бүртгүүлэх ");
+console.log(`
+    ==== ATM SYSTEM ====  
+    1. Нэвтрэх 
+    2. Бүртгүүлэх `);
 
 rl.question("Сонголтоо оруулна уу: ", (startChoice) => {
   if (startChoice === "1") {

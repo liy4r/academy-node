@@ -5,7 +5,7 @@
   "main": "atm.js",
   "type": "module",
   "scripts": {
-    "dev": "node index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,6 +19,10 @@
   },
   "homepage": "https://github.com/liy4r/academy-node#readme",
   "dependencies": {
+    "express": "^5.1.0",
     "inquirer": "^12.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
   }
 }

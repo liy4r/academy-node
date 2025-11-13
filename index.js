@@ -42,8 +42,12 @@ app.post("/create-user", async (req, res) => {
 });
 
 app.put("/update-user/:id", async (req, res) => {
-  console.log(req.params);
-  console.log(req.body);
+  const user = await fs.readFile("users.json").then((value) => {
+    if (req.params == value.id) {
+      console.log(value.id);
+    }
+  });
+
   res.send("Success");
 });
 

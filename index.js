@@ -28,11 +28,6 @@ app.get("/get-users", async (req, res) => {
   const users = await fs.readFile("users.json").then((value) => {
     return JSON.parse(value);
   });
-
-  // const filteredUsers = users.filter(value => {
-  //   return value.firstName === firstName && value.age == age;
-  // });
-
   res.json(users);
 });
 
@@ -42,13 +37,14 @@ app.post("/create-user", async (req, res) => {
 });
 
 app.put("/update-user/:id", async (req, res) => {
-  const user = await fs.readFile("users.json").then((value) => {
-    if (req.params == value.id) {
-      console.log(value.id);
-    }
+  const { id } = req.params;
+  const users = await fs.readFile("users.json", "utf-8").then((value) => {
+    return JSON.parse(value);
   });
-
-  res.send("Success");
+  const user = users.find((value) => value.id == id);
+  Object.assign(user, req.body);
+  await fs.writeFile("users.json", JSON.stringify(users));
+  res.send(user, "Success");
 });
 
 app.listen(3000, () => {

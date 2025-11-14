@@ -1,6 +1,11 @@
+import express from "express";
 import fs from "node:fs/promises";
 import inquirer from "inquirer";
 import { bankAnswer } from "./bank.js";
+
+const app = express();
+
+app.use(express.json());
 
 const getUsers = async () => {
   const userRawData = await fs.readFile("users.json", "utf-8");
@@ -101,4 +106,23 @@ const auth = async () => {
   }
 };
 
+app.put("/deposit", async (req, res) => {
+  const { username } = req.params;
+  const users = await fs.readFile("users.json", "utf-8").then((value) => {
+    return JSON.parse(value);
+  });
+  const user = users.find((value) => value.username == username);
+  //   Object.assign(user, req.body);
+
+  user.balance += req.body.balance;
+
+  res.json(user);
+
+  //   await fs.writeFile("users.json", JSON.stringify(users));
+  //   res.send(user, "Success");
+});
 auth();
+
+app.listen(3000, () => {
+  console.log("3000");
+});

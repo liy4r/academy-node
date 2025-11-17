@@ -5,7 +5,7 @@
   "main": "atm.js",
   "type": "module",
   "scripts": {
-    "dev": "node andex.js",
+    "dev": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

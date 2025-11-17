@@ -1,7 +1,5 @@
 import express from "express";
 import fs from "node:fs/promises";
-import inquirer from "inquirer";
-import { bankAnswer } from "./bank.js";
 
 const app = express();
 
@@ -20,7 +18,7 @@ app.get("/login/:id", async (req, res) => {
 
 app.get("/check-balance/:id", async (req, res) => {
   const { id } = req.params;
-  const users = await fs.readFile("users.json").then((value) => {
+  const users = await fs.readFile("data/users.json").then((value) => {
     return JSON.parse(value);
   });
   const user = users.find((value) => {

@@ -18,6 +18,17 @@ app.get("/login/:id", async (req, res) => {
   res.send(user);
 });
 
+app.get("/check-balance/:id", async (req, res) => {
+  const { id } = req.params;
+  const users = await fs.readFile("users.json").then((value) => {
+    return JSON.parse(value);
+  });
+  const user = users.find((value) => {
+    return value.id == id;
+  });
+  res.send(user.balance);
+});
+
 app.put("/deposit", async (req, res) => {
   const { id } = req.body;
   const users = await fs.readFile("users.json", "utf-8").then((value) => {
@@ -26,6 +37,20 @@ app.put("/deposit", async (req, res) => {
   const user = users.find((value) => value.id == id);
 
   user.balance += req.body.balance;
+
+  await fs.writeFile("users.json", JSON.stringify(users));
+
+  res.json(user);
+});
+
+app.put("/withdraw", async (req, res) => {
+  const { id } = req.body;
+  const users = await fs.readFile("users.json", "utf-8").then((value) => {
+    return JSON.parse(value);
+  });
+  const user = users.find((value) => value.id == id);
+
+  user.balance -= req.body.balance;
 
   await fs.writeFile("users.json", JSON.stringify(users));
 

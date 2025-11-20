@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Page</title>
 
-    <link rel="localhost:3000" href="styles.css" />
+    <link rel="stylesheet" href="styles.css" />
   </head>
 
   <body>
     <div class="login-container">
       <h2>Login</h2>
       <form id="loginForm">
-        <input type="email" id="email" placeholder="Email" required />
+        <input type="text" id="name" placeholder="Username" required />
         <input type="password" id="password" placeholder="Password" required />
         <button type="submit" id="loginBtn">Login</button>
         <div class="error" id="errorMsg"></div>
         <script type="module" src="login.js"></script>
+        <script src="http://localhost:3000/user/login"></script>
       </form>
     </div>
   </body>

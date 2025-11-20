@@ -7,9 +7,6 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-var corsOptions = {
-  origin: "http://localhost:3000",
-};
 
 app.use("/bank", bankRouter);
 app.use("/user", userRouter);

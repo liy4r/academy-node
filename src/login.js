@@ -1,4 +1,4 @@
-const emailInput = document.getElementById("email");
+const emailInput = document.getElementById("name");
 const passwordInput = document.getElementById("password");
 const loginBtn = document.getElementById("loginBtn");
 
@@ -14,7 +14,9 @@ loginBtn.addEventListener("click", async (e) => {
         body: JSON.stringify({ username, password }),
       },
     });
+    if (res.ok) {
+    }
   } catch {
-    e;
+    e("user not found");
   }
 });

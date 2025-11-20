@@ -4,13 +4,13 @@ const bankService = new BankService();
 
 export const login = async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { name, pass } = req.body;
 
     const users = await bankService.getUsers();
     console.log("Users read from file:", users);
-    const foundUser = users.find(
-      (user) => user.firstName == username && user.password == password
-    );
+    const foundUser = users.find((user) => {
+      user.firstName == name && user.password == pass;
+    });
 
     if (foundUser) {
       res.json({ message: "Success", userId: foundUser.id });

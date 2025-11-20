@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/liy4r/academy-node#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "inquirer": "^12.10.0"
   },
   "devDependencies": {

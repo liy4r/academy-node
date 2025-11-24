@@ -8,11 +8,10 @@ export const login = async (req, res) => {
 
     const users = await bankService.getUsers();
     console.log("Users read from file:", users);
-    const foundUser = users.find((user) => {
-      user.firstName == name && user.password == pass;
+    const user = await users.find((u) => {
+      u.firstName == name && u.password == pass;
     });
-
-    if (foundUser) {
+    if (user) {
       res.json({ message: "Success", userId: foundUser.id });
     } else {
       res.status(401).json({ error: "Username or Password incorrect" });
@@ -20,6 +19,12 @@ export const login = async (req, res) => {
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
+  res.cookie("user", user, {
+    httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000,
+    secure: false,
+    sameSite: "None",
+  });
 };
 
 export const register = (req, res) => {

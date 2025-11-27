@@ -21,14 +21,12 @@ export const login = async (req, res) => {
     throw new Error("User not found");
   }
 
-  res.cookie("user", "userId123", {
+  res.cookie("user", user.id, {
     httpOnly: true,
     secure: false,
   });
 
-  res.json({
-    user: "userId123",
-  });
+  res.send("Success");
 };
 
 export const logout = (req, res) => {

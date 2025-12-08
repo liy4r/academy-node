@@ -1,21 +1,29 @@
 {
-  "name": "academy-node",
+  "name": "academy-backend-",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "node index.js",
+    "dev": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/liy4r/academy-node.git"
+    "url": "git+https://github.com/Enkhtuvshin0513/academy-backend-.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/liy4r/academy-node/issues"
+    "url": "https://github.com/Enkhtuvshin0513/academy-backend-/issues"
   },
-  "homepage": "https://github.com/liy4r/academy-node#readme"
+  "homepage": "https://github.com/Enkhtuvshin0513/academy-backend-#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "nodemon": "^3.1.11",
+    "pg": "^8.16.3"
+  }
 }

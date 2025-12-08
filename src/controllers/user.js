@@ -24,6 +24,7 @@ export const login = async (req, res) => {
   res.cookie("user", user.id, {
     httpOnly: true,
     secure: false,
+    maxAge: 24 * 60 * 60 * 1000,
   });
 
   res.send("Success");

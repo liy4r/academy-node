@@ -1,12 +1,6 @@
 import { Router } from "express";
+import { depositController } from "../controllers/bank.js";
 
 export const bankRouters = new Router();
 
-bankRouters.post("/deposit", (req, res) => {
-  console.log(req.user);
-
-  if (!req.user) {
-    res.send("Newtreigui bn");
-  }
-  res.send("success");
-});
+bankRouters.post("/deposit", depositController);

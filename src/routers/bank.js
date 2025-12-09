@@ -16,10 +16,10 @@ export const bankRouters = new Router();
 
 // Account-related
 bankRouters.get("/accounts", getAllAccounts);
-bankRouters.get("/accounts/:accountNumber", getAccountByNumber);
+bankRouters.get("/accounts/byNumber", getAccountByNumber);
 bankRouters.post("/accounts", createAccount);
-bankRouters.put("/accounts/:accountNumber", updateAccount);
-bankRouters.delete("/accounts/:accountNumber", deleteAccount);
+bankRouters.put("/accounts/:userid", updateAccount);
+bankRouters.delete("/accounts", deleteAccount);
 
 // Transaction-related
 bankRouters.get("/transactions", getTransactions);

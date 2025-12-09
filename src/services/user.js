@@ -48,7 +48,7 @@ export const getUserAccountsService = async (id) => {
 
 export const getUserTransactionsService = async (id) => {
   const response = await db.query(
-    `SELECT * FROM transactions WHERE user_id = ${id}`
+    `SELECT * FROM transactions WHERE userid = ${id}`
   );
   return response.rows;
 };

@@ -1,13 +1,17 @@
 import express from "express";
-import type { Request, Response } from "express";
 import mongoose from "mongoose";
-import type { Document } from "mongoose";
-import { Schema, model } from "mongoose";
 import bodyParser from "body-parser";
+import { movieRouter } from "./movies/routes.ts";
+// import { commentRouter } from "./comments/routes.ts";
 
+// Express app
 const app = express();
 app.use(bodyParser.json());
 
+app.use("/movie", movieRouter);
+// app.use("/comments", commentRouter);
+
+// MongoDB connection
 mongoose
   .connect(
     "mongodb+srv://enkhtuvshinej_db_user:7aLod5Z9aBfk23pu@backend-lesson.pfxqeun.mongodb.net/sample_mflix?appName=backend-lesson"

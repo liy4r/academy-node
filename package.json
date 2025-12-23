@@ -5,25 +5,33 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon src/index.js",
+    "dev": "nodemon src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Enkhtuvshin0513/academy-backend-.git"
+    "url": "git+https://github.com/liy4r/academy-node.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Enkhtuvshin0513/academy-backend-/issues"
+    "url": "https://github.com/liy4r/academy-node/issues"
   },
-  "homepage": "https://github.com/Enkhtuvshin0513/academy-backend-#readme",
+  "homepage": "https://github.com/liy4r/academy-node#readme",
   "dependencies": {
+    "body-parser": "^2.2.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
-    "express": "^5.1.0",
+    "express": "^5.2.1",
+    "mongodb": "^7.0.0",
+    "mongoose": "^9.0.2",
     "nodemon": "^3.1.11",
-    "pg": "^8.16.3"
+    "pg": "^8.16.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6"
   }
 }

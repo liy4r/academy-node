@@ -1,6 +1,17 @@
 import { Router } from "express";
-import { MovieIdController, MoviesController } from "./controllers.ts";
+import {
+  InsertMovieController,
+  MoviesController,
+  UpdateRatingController,
+  UpdateGenreController,
+  DeleteMovieController,
+  ImdbRatingIncreaseController,
+} from "./controllers.ts";
 export const movieRouter = Router();
 
 movieRouter.get("/movies", MoviesController);
-movieRouter.get("/id", MovieIdController);
+movieRouter.post("/newMovie", InsertMovieController);
+movieRouter.post("/rating/:id", UpdateRatingController);
+movieRouter.post("/genre/:title", UpdateGenreController);
+movieRouter.delete("/deleteone", DeleteMovieController);
+movieRouter.post("/ratingmany", ImdbRatingIncreaseController);

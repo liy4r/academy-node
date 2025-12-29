@@ -14,7 +14,7 @@ app.use("/movie", movieRouter);
 // MongoDB connection
 mongoose
   .connect(
-    "mongodb+srv://enkhtuvshinej_db_user:7aLod5Z9aBfk23pu@backend-lesson.pfxqeun.mongodb.net/sample_mflix?appName=backend-lesson"
+    "mongodb+srv://bdulguun0114_db_user:OlHZy1HYJMaF8pIc@hicheel.widh6hu.mongodb.net/sample_mflix"
   )
   .then(() => {
     console.log("MongoDB connected");

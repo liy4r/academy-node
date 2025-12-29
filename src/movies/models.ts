@@ -17,16 +17,19 @@ interface ITomatoes extends Document {
 export interface IMoviesDocument extends Document {
   title: string;
   year: number;
-  plot: string;
-  genre: string[];
-  runtime: number;
+  plot?: string;
+  genres: string[];
+  runtime?: number;
   cast: string[];
-  poster: string;
-  fullpolt: string;
-  relased: Date;
-  languages: string[];
+  poster?: string;
+  fullpolt?: string;
+  released?: Date;
+  languages?: string[];
   directors: string[];
-  awards: {
+  imdb: string;
+  metacritic: number;
+  review: string[];
+  awards?: {
     wins: number;
     nominations: number;
     text: string;
@@ -53,17 +56,24 @@ const TomatoesSchema: Schema<ITomatoes> = new Schema(
 );
 
 const MovieSchema: Schema<IMoviesDocument> = new Schema({
-  plot: { type: String, required: true },
-  genre: { type: [String], required: true },
+  plot: { type: String },
+  genres: { type: [String], required: true },
   title: { type: String, required: true },
   year: { type: Number, required: true },
-  runtime: { type: Number, required: true },
+  runtime: { type: Number },
   cast: { type: [String], required: true },
-  poster: { type: String, required: true },
+  poster: { type: String },
   fullpolt: { type: String, required: true },
-  relased: { type: Date, required: true, default: new Date() },
-  languages: { type: [String], required: true },
+  released: { type: Date },
+  languages: { type: [String] },
   directors: { type: [String], required: true },
+  imdb: {
+    rating: { type: Number },
+    votes: { type: Number },
+    id: { type: Number },
+  },
+  metacritic: { type: Number, required: true },
+  review: { type: [String] },
   awards: {
     wins: { type: Number },
     nominations: { type: Number },

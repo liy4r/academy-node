@@ -1,26 +1,34 @@
 import express from "express";
+import { ApolloServer } from "apollo-server-express";
 import mongoose from "mongoose";
-import bodyParser from "body-parser";
-import { movieRouter } from "./movies/routes.ts";
-// import { commentRouter } from "./comments/routes.ts";
+import { typeDefs } from "./apolloserver.ts";
+import { resolvers } from "./apolloserver.ts";
 
-// Express app
-const app = express();
-app.use(bodyParser.json());
+export interface IContext {
+  user: {
+    firstname: string;
+  };
+}
 
-app.use("/movie", movieRouter);
-// app.use("/comments", commentRouter);
+const startServer = async () => {
+  const app = express();
 
-// MongoDB connection
-mongoose
-  .connect(
-    "mongodb+srv://bdulguun0114_db_user:OlHZy1HYJMaF8pIc@hicheel.widh6hu.mongodb.net/sample_mflix"
-  )
-  .then(() => {
-    console.log("MongoDB connected");
-  })
-  .catch((err: Error) => {
-    console.error("MongoDB connection error:", err);
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
   });
 
-app.listen(3000, () => console.log("Server running on port 3000"));
+  await server.start();
+  server.applyMiddleware({ app: app as any });
+
+  await mongoose.connect(
+    "mongodb+srv://bdulguun0114_db_user:OlHZy1HYJMaF8pIc@hicheel.widh6hu.mongodb.net/sample_mflix"
+  );
+  console.log("MongoDB connected");
+
+  app.listen({ port: 4000 }, () =>
+    console.log(`Server running at http://localhost:4000${server.graphqlPath}`)
+  );
+};
+
+startServer();

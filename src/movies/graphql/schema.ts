@@ -29,10 +29,35 @@ export const movieMutationTypeDefs = `
  addMovie(input: MovieInput): String
 `;
 
-export const signUpTypeDefs = `
-input UserInput{
-  name: String
-  email: String
-  password: String
-}
+export const userTypeDefs = `
+  type User {
+    _id: ID
+    name: String
+    email: String
+    password: String
+  }
+     type auth{
+    message: String
+    token: String
+    }
+
+    input UserInput {
+    name: String
+    email: String
+    password: String
+    }
+    input LoginInput{
+    email: String
+    password:String}
 `;
+
+export const userQueryTypeDefs = `
+  userDetail(_id: ID): User
+`;
+
+export const userMutationTypeDefs = `
+  addUser(input: UserInput): User
+`;
+
+export const usersMutationTypeDefs = `
+ userLogin(input: LoginInput):auth`;

@@ -1,15 +1,9 @@
 import { Schema, model } from "mongoose";
-import { Iusers } from "../types/user.ts";
-
-const SignUpSchema: Schema<Iusers> = new Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true },
-  password: { type: String, required: true },
-});
-
-export const users = model<Iusers>("users", SignUpSchema);
-
-import { type ITomatoesDocument, type IMoviesDocument } from "../types/movies";
+import {
+  type ITomatoesDocument,
+  type IMoviesDocument,
+} from "../types/movies.ts";
+import { type IUserDocument } from "../types/user.ts";
 
 const TomatoesSchema: Schema<ITomatoesDocument> = new Schema(
   {
@@ -51,4 +45,12 @@ const MovieSchema: Schema<IMoviesDocument> = new Schema({
   tomatoes: TomatoesSchema,
 });
 
+const UserSchema: Schema<IUserDocument> = new Schema({
+  email: { type: String, required: true },
+  name: { type: String, required: true },
+  password: { type: String, required: true },
+});
+
 export const Movies = model<IMoviesDocument>("movies", MovieSchema);
+
+export const Users = model<IUserDocument>("user", UserSchema);

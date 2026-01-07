@@ -3,6 +3,7 @@ import { ApolloServer } from "apollo-server-express";
 import mongoose from "mongoose";
 import { typeDefs } from "./apolloserver.ts";
 import { resolvers } from "./apolloserver.ts";
+import jwt from "jsonwebtoken";
 
 export interface IContext {
   user: {

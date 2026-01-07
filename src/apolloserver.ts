@@ -2,32 +2,39 @@ import {
   movieTypesDefs,
   movieQueryTypeDefs,
   movieMutationTypeDefs,
-  signUpTypeDefs,
+  userQueryTypeDefs,
+  userTypeDefs,
+  userMutationTypeDefs,
+  usersMutationTypeDefs,
 } from "./movies/graphql/schema.ts";
-import { movieQueries } from "./movies/graphql/queries.ts";
-import { movieMutations, userMutation } from "./movies/graphql/mutations.ts";
+import { movieQueries, userQueries } from "./movies/graphql/queries.ts";
+import {
+  movieMutations,
+  userMutation,
+  usersMutation,
+} from "./movies/graphql/mutations.ts";
 
 export const typeDefs = `
   ${movieTypesDefs}
+  ${userTypeDefs}
 
   type Query {
     ${movieQueryTypeDefs}
+    ${userQueryTypeDefs}
   }
 
   type Mutation {
     ${movieMutationTypeDefs}
+    ${userMutationTypeDefs}
+    ${usersMutationTypeDefs}
   }
-    type Mutation{
-    ${signUpTypeDefs}
-    }
 `;
 
-// Resolvers define how to fetch the types defined in your schema.
-// This resolver retrieves books from the "books" array above.
 export const resolvers = {
-  Query: { ...movieQueries },
+  Query: { ...movieQueries, ...userQueries },
   Mutation: {
     ...movieMutations,
     ...userMutation,
+    ...usersMutation,
   },
 };

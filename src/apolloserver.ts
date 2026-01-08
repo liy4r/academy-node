@@ -6,9 +6,12 @@ import {
   userTypeDefs,
   userMutationTypeDefs,
   usersMutationTypeDefs,
+  commentMutationTypeDefs,
+  commentTypeDefs,
 } from "./movies/graphql/schema.ts";
 import { movieQueries, userQueries } from "./movies/graphql/queries.ts";
 import {
+  commentMutation,
   movieMutations,
   userMutation,
   usersMutation,
@@ -17,6 +20,7 @@ import {
 export const typeDefs = `
   ${movieTypesDefs}
   ${userTypeDefs}
+  ${commentTypeDefs}
 
   type Query {
     ${movieQueryTypeDefs}
@@ -27,6 +31,7 @@ export const typeDefs = `
     ${movieMutationTypeDefs}
     ${userMutationTypeDefs}
     ${usersMutationTypeDefs}
+    ${commentMutationTypeDefs}
   }
 `;
 
@@ -36,5 +41,6 @@ export const resolvers = {
     ...movieMutations,
     ...userMutation,
     ...usersMutation,
+    ...commentMutation,
   },
 };

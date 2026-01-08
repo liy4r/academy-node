@@ -17,23 +17,24 @@ export interface ITomateos {
 export interface ITomatoesDocument extends ITomateos, Document {}
 
 export interface IMovie {
+  userId: string;
   title: string;
-  year: number;
-  plot: string;
-  genre: string[];
-  runtime: number;
-  cast: string[];
-  poster: string;
-  fullpolt: string;
-  relased: Date;
-  languages: string[];
-  directors: string[];
-  awards: {
+  year?: number;
+  plot?: string;
+  genre?: string[];
+  runtime?: number;
+  cast?: string[];
+  poster?: string;
+  fullpolt?: string;
+  relased?: Date;
+  languages?: string[];
+  directors?: string[];
+  awards?: {
     wins: number;
     nominations: number;
     text: string;
   };
-  tomatoes: ITomateos;
+  tomatoes?: ITomateos;
 }
 
 export interface IMoviesDocument extends IMovie, Document {

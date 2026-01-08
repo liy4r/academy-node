@@ -14,8 +14,18 @@ export const movieTypesDefs = `
   }
 
   input MovieInput {
+  userId:String
+  plot: String
+  genre: String
     title: String
-    author: String
+    year: Int
+    runtime: String
+    cast: String
+    poster: String
+    fullplot: String
+    relased: Int
+    langueges: [String]
+    directors: String
   }
 
 `;
@@ -40,7 +50,13 @@ export const userTypeDefs = `
     message: String
     token: String
     }
-
+type Comment {
+ email:String
+    name:String
+    movie_id:String
+    text: String
+    date:Int
+}
     input UserInput {
     name: String
     email: String
@@ -50,6 +66,12 @@ export const userTypeDefs = `
     email: String
     password:String}
 `;
+export const commentTypeDefs = `
+    input CommentInput {
+    movie_id:String
+    text: String
+    date:Int
+    }`;
 
 export const userQueryTypeDefs = `
   userDetail(_id: ID): User
@@ -61,3 +83,6 @@ export const userMutationTypeDefs = `
 
 export const usersMutationTypeDefs = `
  userLogin(input: LoginInput):auth`;
+
+export const commentMutationTypeDefs = `
+ addComment(input: CommentInput):Comment`;

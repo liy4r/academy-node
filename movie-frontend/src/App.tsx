@@ -13,15 +13,15 @@ function App() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Card Title</CardTitle>
-        <CardDescription>Card Description</CardDescription>
-        <CardAction>Card Action</CardAction>
+        <CardTitle>Who I Was</CardTitle>
+        <CardDescription>Stuck</CardDescription>
+        <CardAction>In Traffic</CardAction>
       </CardHeader>
       <CardContent>
-        <p>Card Content</p>
+        <p>Tryna</p>
       </CardContent>
       <CardFooter>
-        <p>Card Footer</p>
+        <p>Find</p>
       </CardFooter>
     </Card>
   );

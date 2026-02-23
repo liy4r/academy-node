@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import type { IMovie } from "../types.ts";
+import type { IMovie } from "../types";
 
 export const useGetMovies = (genre?: string) => {
   const [movies, setMovies] = useState<IMovie[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/movie/movies`)
+    fetch(`http://localhost:3001/movie/movies`)
       .then((res) => {
         return res.json();
       })
